@@ -1,0 +1,37 @@
+COGNITION DATABASE SYSTEMS MINI-PROJECT — DEMO CHECKLIST
+
+What was checked in this preparation environment:
+[PASS] CognitionApp.java compiles with JDK 21 (javac -Xlint:all).
+[PASS] Browser preview JavaScript passes node --check.
+[PASS] Preview server returns HTTP 200 and serves the expected HTML.
+[NOT TESTED] Oracle schema/data/query execution — no Oracle SQL*Plus, Oracle instance, or ojdbc driver is available in this environment.
+[NOT TESTED] Live JDBC connectivity — requires your Oracle database service, credentials, and ojdbc jar.
+
+FASTEST DEMO PLAN
+1. Start Oracle and open SQL Developer.
+2. Connect to your project schema.
+3. Run sql/01_schema.sql once.
+4. Run sql/02_sample_data.sql once.
+5. Run selected queries individually from sql/03_queries.sql: Q1, Q2, Q3, Q4, Q5, Q7, Q8.
+6. Show Insert, Search, Update, Display in the Java JDBC app if your connection is configured. Delete only an unlinked test learner such as CTEST.
+7. If the Oracle/JDBC environment is not ready, use web/index.html as a clearly labelled browser UI preview. Do not claim the preview itself is connected to Oracle.
+
+RUN BROWSER PREVIEW ON WINDOWS
+- Double-click web/Run-Preview-Windows.bat.
+- On laptop: http://localhost:8000
+- On phone: connect phone and laptop to the same Wi-Fi, run ipconfig on laptop, find its IPv4 address, and open http://<that-IPv4-address>:8000 on the phone.
+- If prompted, allow Python through Windows Firewall on private networks only.
+- This is local demo preview data, saved in that browser's localStorage. It is not shared with Oracle or another device.
+
+RUN JAVA JDBC APP ON WINDOWS (PowerShell)
+Set environment variables for your actual Oracle service, schema username, password, and JDBC jar before running. Never use made-up credentials.
+$env:ORACLE_URL = "jdbc:oracle:thin:@//localhost:1521/FREEPDB1"
+$env:ORACLE_USER = "YOUR_SCHEMA_USER"
+$env:ORACLE_PASSWORD = "YOUR_PASSWORD"
+javac -cp ".;C:\path\to\ojdbc11.jar" .\java\src\CognitionApp.java
+java -cp ".;C:\path\to\ojdbc11.jar;java\src" CognitionApp
+
+IMPORTANT
+- The example service name FREEPDB1 may differ on your computer.
+- Run the schema and sample-data scripts only once on a fresh schema; rerunning them will cause duplicate table/unique-key errors.
+- Use only synthetic learner data for the demo.

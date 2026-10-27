@@ -1,0 +1,14 @@
+COGNITION WEB FORM -> ORACLE SETUP (Windows)
+
+1. Make sure Oracle is running and the COGNITION user can connect to FREEPDB1.
+2. Double-click Run-Oracle-Web.bat from this extracted project folder.
+3. Enter your COGNITION database password in the terminal. Do not share or commit it.
+4. Wait for: "Connected to Cognition Oracle database." and "Open http://localhost:8080..."
+5. Open http://localhost:8080 in your browser (not the old Python preview URL/port).
+6. Sign in to the existing demo UI using demo / cognition123.
+7. Go to Learners -> Add learner. Enter a unique participant code and display name -> Save learner.
+8. Confirm the row appears in the table. It is fetched from Oracle.
+9. To independently verify in SQLTools, run:
+   SELECT learner_id, participant_code, display_name, created_at FROM learner ORDER BY learner_id;
+
+The web registration form inserts into the existing LEARNER table. It does not implement email/password student authentication. The dashboard's sessions/signals/progress remain sample data. Keep the terminal open while using the page. If your JDBC driver is in a different location, edit JDBC_JAR at the top of Run-Oracle-Web.bat.
